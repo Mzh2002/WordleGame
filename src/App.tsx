@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from "react";
 import "./App.css";
 import { Board } from "./components/Board";
-import { Keyboard } from "./components/Keyboard";
 import { useWordle } from "./hooks/useWordle";
 
 function App() {
@@ -9,7 +8,6 @@ function App() {
     guesses,
     currentGuess,
     status,
-    keyboardStatuses,
     message,
     addLetter,
     removeLetter,
@@ -60,10 +58,6 @@ function App() {
           </button>
         )}
       </main>
-
-      <footer className="app__footer">
-        <Keyboard statuses={keyboardStatuses} onKey={handleKey} />
-      </footer>
     </div>
   );
 }

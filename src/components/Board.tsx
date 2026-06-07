@@ -1,5 +1,5 @@
 import type { EvaluatedLetter } from "../lib/wordle";
-import { MAX_GUESSES } from "../lib/wordle";
+import { MAX_GUESSES, WORD_LENGTH } from "../lib/wordle";
 import { Row } from "./Row";
 
 interface BoardProps {
@@ -15,7 +15,11 @@ export function Board({ guesses, currentGuess, isPlaying }: BoardProps) {
     if (i < guesses.length) {
       rows.push(<Row key={i} evaluated={guesses[i]} />);
     } else if (i === guesses.length && isPlaying) {
-      rows.push(<Row key={i} current={currentGuess} />);
+      const cursorIndex =
+        currentGuess.length < WORD_LENGTH ? currentGuess.length : undefined;
+      rows.push(
+        <Row key={i} current={currentGuess} cursorIndex={cursorIndex} />,
+      );
     } else {
       rows.push(<Row key={i} />);
     }
