@@ -1,0 +1,163 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 0 1rem;
+}
+
+.app__header {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 0;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.app__message {
+  margin: 0;
+  font-weight: 600;
+  min-height: 1.2em;
+}
+
+.app__reset {
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.app__footer {
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 5px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid var(--border);
+  color: var(--fg);
+  user-select: none;
+}
+
+.tile--filled {
+  border-color: var(--border-strong);
+}
+
+.tile--correct {
+  background: var(--correct);
+  border-color: var(--correct);
+  color: #fff;
+}
+
+.tile--present {
+  background: var(--present);
+  border-color: var(--present);
+  color: #fff;
+}
+
+.tile--absent {
+  background: var(--absent);
+  border-color: var(--absent);
+  color: #fff;
+}
+
+/* Keyboard */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.keyboard__row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.key {
+  cursor: pointer;
+  min-width: 32px;
+  height: 52px;
+  padding: 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  background: var(--key-bg);
+  color: var(--fg);
+}
+
+.key--wide {
+  min-width: 60px;
+  font-size: 0.8rem;
+}
+
+.key--correct {
+  background: var(--correct);
+  color: #fff;
+}
+
+.key--present {
+  background: var(--present);
+  color: #fff;
+}
+
+.key--absent {
+  background: var(--absent);
+  color: #fff;
+}
+
+@media (max-width: 420px) {
+  .tile {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+
+  .key {
+    min-width: 26px;
+    height: 46px;
+  }
+}
