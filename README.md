@@ -20,6 +20,18 @@ npm run preview  # preview the production build
 npm run lint     # run ESLint
 ```
 
+## Development
+
+Run the dev server to work on the game with instant feedback:
+
+```bash
+npm run dev
+```
+
+Vite serves the app at http://localhost:5173 with Hot Module Replacement (HMR):
+edit any file under `src/` and the browser updates immediately, no manual refresh
+or rebuild required.
+
 ## Project structure
 
 ```
