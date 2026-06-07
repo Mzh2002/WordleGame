@@ -46,7 +46,9 @@ src/
   lib/
     wordle.ts        Pure game logic (guess evaluation, win check)
   data/
-    words.ts         Answer pool and allowed-guess dictionary
+    words.ts         Loads + parses the word lists, validation, random answer
+    answers.txt      Official Wordle solution pool (~2,300 words)
+    allowed.txt      Extra accepted guesses, never used as answers (~10,600)
   App.tsx          Wires everything together + physical keyboard input
   index.css        Global styles / theme variables
   App.css          Component styles
@@ -62,7 +64,9 @@ src/
 
 ## Extending the game
 
-- **Bigger dictionary:** expand `ANSWERS` and `ALLOWED_GUESSES` in
-  `src/data/words.ts` (or load words from a file/API).
+- **Bigger dictionary:** add words (one per line) to `src/data/answers.txt`
+  (solutions) or `src/data/allowed.txt` (accepted guesses only). They are
+  bundled at build time via Vite `?raw` imports and parsed in `words.ts`.
 - **Different word length / guess count:** adjust `WORD_LENGTH` in
-  `src/data/words.ts` and `MAX_GUESSES` in `src/lib/wordle.ts`.
+  `src/data/words.ts` and `MAX_GUESSES` in `src/lib/wordle.ts`. Words whose
+  length doesn't match `WORD_LENGTH` are filtered out automatically.

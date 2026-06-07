@@ -1,69 +1,30 @@
 // Word data for the Wordle game.
 //
-// `ANSWERS` is the pool of possible solutions. `ALLOWED_GUESSES` contains
-// additional words that are accepted as valid guesses but never chosen as the
-// answer. A guess is valid if it appears in either list.
+// The word lists are bundled from plain-text files (one word per line):
+//  - `answers.txt`  — the official Wordle solution pool (~2,300 words).
+//  - `allowed.txt`  — additional words accepted as guesses but never chosen
+//    as the answer (~10,600 words).
 //
-// This is intentionally a small starter list to keep the framework lightweight.
-// Expand these arrays (or load them from an API/file) to grow the dictionary.
+// A guess is valid if it appears in either list. To grow the dictionary,
+// edit those text files rather than this module.
+
+import answersRaw from "./answers.txt?raw";
+import allowedRaw from "./allowed.txt?raw";
 
 export const WORD_LENGTH = 5;
 
-export const ANSWERS: string[] = [
-  "apple",
-  "brave",
-  "crane",
-  "drone",
-  "eagle",
-  "flame",
-  "grape",
-  "house",
-  "ivory",
-  "joker",
-  "knife",
-  "lemon",
-  "mango",
-  "noble",
-  "ocean",
-  "piano",
-  "quilt",
-  "robot",
-  "stone",
-  "tiger",
-  "ultra",
-  "vivid",
-  "wheat",
-  "xenon",
-  "yacht",
-  "zebra",
-];
+function parseWords(raw: string): string[] {
+  return raw
+    .split(/\r?\n/)
+    .map((word) => word.trim().toLowerCase())
+    .filter((word) => word.length === WORD_LENGTH);
+}
 
-export const ALLOWED_GUESSES: string[] = [
-  "about",
-  "alert",
-  "beach",
-  "bread",
-  "chair",
-  "cloud",
-  "dance",
-  "earth",
-  "fairy",
-  "ghost",
-  "heart",
-  "input",
-  "light",
-  "mouse",
-  "night",
-  "plant",
-  "river",
-  "sugar",
-  "train",
-  "water",
-];
+export const ANSWERS: string[] = parseWords(answersRaw);
 
-const VALID_WORDS = new Set<string>(
-  [...ANSWERS, ...ALLOWED_GUESSES].map((w) => w.toLowerCase()),
-);
+export const ALLOWED_GUESSES: string[] = parseWords(allowedRaw);
+
+const VALID_WORDS = new Set<string>([...ANSWERS, ...ALLOWED_GUESSES]);
 
 /** Returns true if the given word is an accepted guess. */
 export function isValidWord(word: string): boolean {
@@ -73,5 +34,5 @@ export function isValidWord(word: string): boolean {
 /** Picks a pseudo-random answer from the answer pool. */
 export function getRandomAnswer(): string {
   const index = Math.floor(Math.random() * ANSWERS.length);
-  return ANSWERS[index].toLowerCase();
+  return ANSWERS[index];
 }
